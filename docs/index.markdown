@@ -9,21 +9,10 @@ layout: home
 
 <head>
   <meta charset="utf-8">
-  <title></title>
-  <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta property="og:title" content="">
-  <meta property="og:type" content="">
-  <meta property="og:url" content="">
-  <meta property="og:image" content="">
-
   <link rel="manifest" href="site.webmanifest">
-  <link rel="apple-touch-icon" href="icon.png">
-  <!-- Place favicon.ico in the root directory -->
 
-  <link rel="stylesheet" href="/assets/css/normalize.css">
-  <link rel="stylesheet" href="/assets/css/main.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.5.0/math.js" integrity="sha512-PRRHSwgn8QJinp43y5B698YK/FApqSvwmd7kVu8NWMksCl/3daKnNbPNWPuGKDrpIIb+0Dg5W55VSbZi0QG60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 </head>
@@ -32,18 +21,23 @@ layout: home
 
   <!-- Add your site or application content here -->
 <div class="container-fluid">
+  <h1>Propagation of Uncertainty Calculator</h1>
+  <button type="button" class="btn btn-primary" onclick="importSession()">Import</button>
+  <button type="button" class="btn btn-primary" onclick="exportSession()">Export</button>
+  <br>
+  <br>
   <h2>Variables</h2>
   <div class="row no-gutters">
     <div class="col-12 col-sm text-left">
-      <button type="button" id="addbutton" class="btn" data-bs-toggle="modal" data-bs-target="#addmodal"><img src="/assets/images/add.svg" title="add new variable" alt="a" width="20" height="20"></button>
+      <button type="button" id="addButton" class="btn" data-bs-toggle="modal" data-bs-target="#addModal"><img src="/assets/images/add.svg" title="Add new variable" alt="a" width="20" height="20"></button>
       <button type="button" id="editButton" class="btn" data-bs-toggle="modal" data-bs-target=""><img src="/assets/images/edit.svg" title="Edit selected variable" alt="E" width="20" height="20"></button>
       <button type="button" id="deleteButton" class="btn" data-bs-toggle="modal" data-bs-target=""><img src="/assets/images/delete.svg" title="Delete selected variable" alt="D" width="20" height="20"></button>
     </div>
     <div class="col-md-6 hidden-lg-down"></div>
     <div class="col-12 col-sm">
-      <form class="form-inline float-lg-right" action="" method="post">
+      <div class="float-lg-right">
         <label for="selectSignificantFigures">Significant figures:</label>
-        <select class="form-select" aria-label="Default select example" name="sf" onchange="changeSF()" id="selectSignificantFigures">
+        <select class="form-select" aria-label="Default select example" name="sf" onchange="changeSignificantFigures()" id="selectSignificantFigures">
           <option>1</option>
           <option selected>2</option>
           <option>3</option>
@@ -60,8 +54,7 @@ layout: home
           <option>14</option>
           <option>15</option>
         </select>
-        <input type="hidden">
-      </form>
+      </div>
     </div>
   </div>
   <div class="table-wrapper">
@@ -89,11 +82,6 @@ layout: home
   </div>
 </div>
 
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#importModal">
-  Launch demo modal
-</button>
-<button type="button" class="btn btn-primary" onclick="exportSession()">Export</button>
-<a id="downloadAnchorElem" style="display:none"></a>
 
 <!-- Modal -->
 <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
@@ -117,8 +105,8 @@ layout: home
             </thead>
             <tbody id="addTable">
               <tr>
-                <td class="text-center"><input type="number" class="form-control" placeholder="0.0" step="1e-35" required></td>
-                <td class="text-center"><input type="number" class="form-control" placeholder="0.0" step="1e-35" required></td>
+                <td class="text-center"><input type="number" class="form-control" placeholder="0.0" step="1e-15" required></td>
+                <td class="text-center"><input type="number" class="form-control" placeholder="0.0" step="1e-15" required></td>
               </tr>
             </tbody>
           </table>
@@ -152,8 +140,8 @@ layout: home
             </thead>
             <tbody id="editTable">
               <tr>
-                <td class="text-center"><input type="number" class="form-control" placeholder="0.0" step="1e-35" required></td>
-                <td class="text-center"><input type="number" class="form-control" placeholder="0.0" step="1e-35" required></td>
+                <td class="text-center"><input type="number" class="form-control" placeholder="0.0" step="1e-15" required></td>
+                <td class="text-center"><input type="number" class="form-control" placeholder="0.0" step="1e-15" required></td>
               </tr>
             </tbody>
           </table>
@@ -178,31 +166,12 @@ layout: home
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="deleteVariable(SELECTED_VARIABLE._id, variables)">Yes</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="deleteVariable(SELECTED_VARIABLE._id)">Yes</button>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal fade" id="importModal" tabindex="-1" aria-labelledby="importModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Import session</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <input type="file" id="file-selector">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="importSession()">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script src="/assets/js/vendor/modernizr-3.11.2.min.js"></script>
 <script src="/assets/js/plugins.js"></script>
 <script src="/assets/js/main.js"></script>
 

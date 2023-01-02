@@ -1,15 +1,10 @@
+let VARIABLES = [];
 let SELECTED_VARIABLE = null;
-let SIGNIFICANT_FIGURES = 5;
+let SIGNIFICANT_FIGURES = 2;
 
-  const fileSelector = document.getElementById('file-selector');
-  fileSelector.addEventListener('change', (event) => {
-    const fileList = event.target.files;
-      file = fileList[0];
-  });
-
-function changeSF() {
+function changeSignificantFigures() {
     SIGNIFICANT_FIGURES = Number(document.getElementById("selectSignificantFigures").value);
-    loadVariables(variables);
+    loadVariables();
 }
 
 function addRow(tab_id, data=[null, null]) {
@@ -81,10 +76,10 @@ function loadVariable(theVar) {
   }
 }
 
-function loadVariables(theVars) {
+function loadVariables() {
   deleteAllRows("variablesTable");
-  for (let i = 0; i < theVars.length; i++) {
-      loadVariable(theVars[i]);
+  for (let i = 0; i < VARIABLES.length; i++) {
+      loadVariable(VARIABLES[i]);
       document.getElementById("editButton").setAttribute("data-bs-target", "");
       document.getElementById("deleteButton").setAttribute("data-bs-target", "");
       SELECTED_VARIABLE = null;
@@ -92,21 +87,33 @@ function loadVariables(theVars) {
   }
 }
 
+function validateName(name) {
+    let names = [];
+    for (let i = 0; i < VARIABLES.length; i++)
+        names.push(VARIABLES[i].name)
+    return !names.includes(name) && name.search("^[a-zA-Z_$\u00C0-\u02AF\u0370-\u03FF\u2100-\u214F\u1D400-\u1D7FF][a-z0-9A-Z_$\u00C0-\u02AF\u0370-\u03FF\u2100-\u214F\uD835\u1D400—\u1D7FF]*$") !== -1;
+}
+
 function addVariable() {
     let name = document.getElementById("nameInputAdd").value;
-    let tab = document.getElementById("addTable");
-    let data = [];
-    for (let i = 0; i < tab.rows.length; i++) {
-        let val = Number(tab.rows[i].cells[0].children[0].value)
-        let unc = Number(tab.rows[i].cells[1].children[0].value)
-        data.push([val, unc]);
-    }
-    [value, uncertainty] = computeValueAndUncertainty(data);
-    let _id = variables.length + 1;
-    let note = "";
-    let result = {name, data, value, uncertainty, note, _id}
-    variables.push(result);
-    loadVariables(variables);
+    if (validateName(name)) {
+        let tab = document.getElementById("addTable");
+        let data = [];
+        for (let i = 0; i < tab.rows.length; i++) {
+            let val = Number(tab.rows[i].cells[0].children[0].value)
+            let unc = Number(tab.rows[i].cells[1].children[0].value)
+            data.push([val, unc]);
+        }
+        let [value, uncertainty] = computeValueAndUncertainty(data);
+        let _id = VARIABLES.reduce((acc, value) => {
+          return (acc = acc > value._id ? acc : value._id);
+        }, 0) + 1;
+        let note = "";
+        let result = {name, data, value, uncertainty, note, _id}
+        VARIABLES.push(result);
+        loadVariables();
+    } else
+        alert('"' + name + '"is not a valid name')
 }
 
 function editVariable(varId) {
@@ -118,21 +125,21 @@ function editVariable(varId) {
         let unc = Number(tab.rows[i].cells[1].children[0].value)
         data.push([val, unc]);
     }
-    [value, uncertainty] = computeValueAndUncertainty(data);
+    let [value, uncertainty] = computeValueAndUncertainty(data);
     let _id = varId;
     let note = "";
     let result = {name, data, value, uncertainty, note, _id}
     let i = 0;
-    while (variables[i]._id !== varId) i++;
-    variables[i] = result;
-    loadVariables(variables);
+    while (VARIABLES[i]._id !== varId) i++;
+    VARIABLES[i] = result;
+    loadVariables();
 }
 
-function deleteVariable(varId, theVars) {
+function deleteVariable(varId) {
   let i = 0;
-  while (theVars[i]._id !== varId) i++;
-  theVars.splice(i, 1);
-  loadVariables(theVars);
+  while (VARIABLES[i]._id !== varId) i++;
+  VARIABLES.splice(i, 1);
+  loadVariables();
   document.getElementById("editButton").setAttribute("data-bs-target", "");
   document.getElementById("deleteButton").setAttribute("data-bs-target", "");
   SELECTED_VARIABLE = null;
@@ -153,9 +160,9 @@ function computeValueAndUncertainty(data) {
 function computePropagation() {
     let expr = document.getElementById("exprId").value;
     let scope = {};
-    for (let i = 0; i < variables.length; i++) {
-        scope[variables[i]["name"]] = variables[i]["value"]
-        scope[variables[i]["name"] + "_uncertainty"] = variables[i]["uncertainty"]
+    for (let i = 0; i < VARIABLES.length; i++) {
+        scope[VARIABLES[i]["name"]] = VARIABLES[i]["value"]
+        scope[VARIABLES[i]["name"] + "_uncertainty"] = VARIABLES[i]["uncertainty"]
     }
     let keys = Object.keys(scope);
     let val = math.evaluate(expr, scope)
@@ -175,20 +182,28 @@ function execute() {
     deleteAllRows("addTable");
     addRow("addTable", computePropagation());
 }
+
 function importSession() {
-    let fr = new FileReader();
-    fr.onload=function(){variables_raw = fr.result
-    variables = JSON.parse(variables_raw);
-    loadVariables(variables);}
-    fr.readAsText(file);
+    let fileSelector = document.createElement("input");
+    fileSelector.setAttribute("type", "file")
+    fileSelector.setAttribute("accept", ".json")
+    fileSelector.addEventListener('input', (event) => {
+        let file = event.target.files[0];
+        let fh = new FileReader();
+        fh.onload = function(){
+            let variables_raw = fh.result
+            VARIABLES = JSON.parse(variables_raw);
+            loadVariables();}
+        fh.readAsText(file);
+    });
+    fileSelector.click()
 }
 
 function exportSession() {
-    let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(variables));
-    let dlAnchorElem = document.getElementById('downloadAnchorElem');
-    dlAnchorElem.setAttribute("href",     dataStr     );
-    dlAnchorElem.setAttribute("download", "session.json");
-    dlAnchorElem.click();
+    let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(VARIABLES));
+    let downloadLink = document.createElement("a");
+    downloadLink.setAttribute("href", dataStr);
+    downloadLink.setAttribute("download", "session.json");
+    downloadLink.click();
 }
-
 
