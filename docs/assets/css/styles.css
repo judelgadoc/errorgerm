@@ -1,0 +1,12 @@
+.table-wrapper {
+    max-height: 50vh;
+    overflow: auto;
+    display:inline-block;
+    width: 100%
+  }
+
+  .row-wrapper {
+    overflow: auto;
+    display:inline-block;
+    width: 100%
+  }
