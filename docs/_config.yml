@@ -22,11 +22,11 @@ title: ErrorGerm
 description: >- # this means to ignore newlines until "baseurl:"
   ErrorGerm is a calculator of propagation of uncertainty.
   It can export and import a session for later usage
-domain: judelgadoc@github.io
+domain: judelgadoc.github.io
 baseurl: /errorgerm/ # the subpath of your site, e.g. /blog
-url: https://judelgadoc@github.io # the base hostname & protocol for your site, e.g. http://example.com
+url: https://judelgadoc.github.io # the base hostname & protocol for your site, e.g. http://example.com
 # twitter_username: jekyllrb
-github_username:  judelgadoc
+github_username: judelgadoc
 
 # Build settings
 #theme: jekyll-bootstrap-theme

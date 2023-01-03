@@ -29,9 +29,9 @@ layout: home
   <h2>Variables</h2>
   <div class="row no-gutters">
     <div class="col-12 col-sm text-left">
-      <button type="button" id="addButton" class="btn" data-bs-toggle="modal" data-bs-target="#addModal"><img src="/assets/images/add.svg" title="Add new variable" alt="a" width="20" height="20"></button>
-      <button type="button" id="editButton" class="btn" data-bs-toggle="modal" data-bs-target=""><img src="/assets/images/edit.svg" title="Edit selected variable" alt="E" width="20" height="20"></button>
-      <button type="button" id="deleteButton" class="btn" data-bs-toggle="modal" data-bs-target=""><img src="/assets/images/delete.svg" title="Delete selected variable" alt="D" width="20" height="20"></button>
+      <button type="button" id="addButton" class="btn" data-bs-toggle="modal" data-bs-target="#addModal"><img src="{{ '/assets/images/add.svg' | relative_url }}" title="Add new variable" alt="a" width="20" height="20"></button>
+      <button type="button" id="editButton" class="btn" data-bs-toggle="modal" data-bs-target=""><img src="{{ '/assets/images/edit.svg' | relative_url }}" title="Edit selected variable" alt="E" width="20" height="20"></button>
+      <button type="button" id="deleteButton" class="btn" data-bs-toggle="modal" data-bs-target=""><img src="{{ '/assets/images/delete.svg' | relative_url }}" title="Delete selected variable" alt="D" width="20" height="20"></button>
     </div>
     <div class="col-md-6 hidden-lg-down"></div>
     <div class="col-12 col-sm">
@@ -94,8 +94,8 @@ layout: home
       <div class="modal-body">
         <label for="nameInputAdd">Name</label>
         <input type="text" class="form-control" id="nameInputAdd" placeholder="Name" name="name" required>
-        <img src="/assets/images/add.svg" title="Add row" alt="A" width="20" height="20" onclick="addRow('addTable')" style="cursor: pointer">
-        <img src="/assets/images/minus.svg" title="Delete row" alt="D" width="20" height="20" onclick="deleteRow('addTable')" style="cursor: pointer">
+        <img src="{{ '/assets/images/add.svg' | relative_url }}" title="Add row" alt="A" width="20" height="20" onclick="addRow('addTable')" style="cursor: pointer">
+        <img src="{{ '/assets/images/minus.svg' | relative_url }}" title="Delete row" alt="D" width="20" height="20" onclick="deleteRow('addTable')" style="cursor: pointer">
           <table class="table table-bordered table-hover">
             <thead>
               <tr>
@@ -129,8 +129,8 @@ layout: home
       <div class="modal-body">
         <label for="nameInputAdd">Name</label>
         <input type="text" class="form-control" id="nameInputEdit" placeholder="Name" name="name" required>
-        <img src="/assets/images/add.svg" title="Add row" alt="A" width="20" height="20" onclick="addRow('editTable')" style="cursor: pointer">
-        <img src="/assets/images/minus.svg" title="Delete row" alt="D" width="20" height="20" onclick="deleteRow('editTable')" style="cursor: pointer">
+        <img src="{{ '/assets/images/add.svg' | relative_url }}" title="Add row" alt="A" width="20" height="20" onclick="addRow('editTable')" style="cursor: pointer">
+        <img src="{{ '/assets/images/minus.svg' | relative_url }}" title="Delete row" alt="D" width="20" height="20" onclick="deleteRow('editTable')" style="cursor: pointer">
           <table class="table table-bordered table-hover">
             <thead>
               <tr>
@@ -172,8 +172,8 @@ layout: home
   </div>
 </div>
 
-<script src="/assets/js/plugins.js"></script>
-<script src="/assets/js/main.js"></script>
+<script src="{{ '/assets/js/plugins.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/main.js' | relative_url }}"></script>
 
 </body>
 
