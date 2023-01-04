@@ -37,6 +37,9 @@ remote_theme: jonaharagon/jekyll-bootstrap-theme@v1.1.0
 bootstrap:
   social_links:
     github:  'https://github.com/judelgadoc/errorgerm'
+  header_pages:
+    - about.markdown
+    - help.md
 
 # Exclude from processing.
 # The following items will not be processed, by default.
