@@ -5,21 +5,7 @@
 layout: home
 ---
 
-<html class="no-js" lang="">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link rel="manifest" href="site.webmanifest">
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.5.0/math.js" integrity="sha512-PRRHSwgn8QJinp43y5B698YK/FApqSvwmd7kVu8NWMksCl/3daKnNbPNWPuGKDrpIIb+0Dg5W55VSbZi0QG60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-</head>
-
-<body>
-
-  <!-- Add your site or application content here -->
+<!-- Add your site or application content here -->
 <div class="container-fluid">
   <h1>Propagation of Uncertainty Calculator</h1>
   <button type="button" class="btn btn-primary" onclick="importSession()">Import</button>
@@ -172,9 +158,7 @@ layout: home
   </div>
 </div>
 
+<script src="{{ '/assets/js/math.min.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/plugins.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
 
-</body>
-
-</html>

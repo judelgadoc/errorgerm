@@ -169,9 +169,9 @@ function computePropagation() {
     let uncExpr = "sqrt("
     for (let i = 0; i < keys.length; i=i+2) {
         if (i < keys.length-2)
-            uncExpr += "((" + math.derivative(expr, keys[i]).toString() + ")*" + keys[i] + "_uncertainty)^2 + ";
+            uncExpr += "((" + math.derivative(expr, math.parse(keys[i])).toString() + ")*" + keys[i] + "_uncertainty)^2 + ";
         else
-            uncExpr += "((" + math.derivative(expr, keys[i]).toString() + ")*" + keys[i] + "_uncertainty)^2";
+            uncExpr += "((" + math.derivative(expr, math.parse(keys[i])).toString() + ")*" + keys[i] + "_uncertainty)^2";
     }
     uncExpr += ")"
     let unc = math.evaluate(uncExpr, scope);
