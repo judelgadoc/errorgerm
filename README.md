@@ -102,7 +102,7 @@ If you want a local copy follow these simple steps.
 
 ### Prerequisites
 
-Jekyll and Bundle: referer to [Jekyll Documentation](https://jekyllrb.com/docs/installation/)
+Jekyll and Bundle: please refer to [Jekyll Documentation](https://jekyllrb.com/docs/installation/)
 
 ### Installation
 
@@ -153,7 +153,7 @@ _For more information, please refer to the [Help](https://judelgadoc.github.io/e
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE.md` for more information.
+Distributed under the MIT License. See `LICENSE` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -171,7 +171,7 @@ Distributed under the MIT License. See `LICENSE.md` for more information.
 [issues-shield]: https://img.shields.io/github/issues/judelgadoc/errorgerm.svg?style=for-the-badge
 [issues-url]: https://github.com/judelgadoc/errorgerm/issues
 [license-shield]: https://img.shields.io/github/license/judelgadoc/errorgerm.svg?style=for-the-badge
-[license-url]: https://github.com/judelgadoc/errorgerm/blob/master/LICENSE.txt
+[license-url]: https://github.com/judelgadoc/errorgerm/blob/master/LICENSE
 [product-screenshot]: images/index-screenshot.png
 [add-variable-screenshot]: images/add-variable-screenshot.png
 [Jekyll]: https://img.shields.io/badge/jekyll-2B2B2B?style=for-the-badge&logo=jekyll&logoColor=wihte

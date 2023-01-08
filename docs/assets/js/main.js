@@ -63,7 +63,6 @@ function highlightRow(row, tab, theVar) {
 function loadVariable(theVar) {
   let tab = document.getElementById("variablesTable");
   let row = tab.insertRow(-1);
-  row.style.cursor = "pointer";
   row.setAttribute("class", "clickable-row");
   row.addEventListener("click" , () => {
       highlightRow(row, tab, theVar);
@@ -91,7 +90,7 @@ function validateName(name) {
     let names = [];
     for (let i = 0; i < VARIABLES.length; i++)
         names.push(VARIABLES[i].name)
-    return !names.includes(name) && name.search("^[a-zA-Z_$\u00C0-\u02AF\u0370-\u03FF\u2100-\u214F\u1D400-\u1D7FF][a-z0-9A-Z_$\u00C0-\u02AF\u0370-\u03FF\u2100-\u214F\uD835\u1D400—\u1D7FF]*$") !== -1;
+    return !names.includes(name) && name.search("^[a-zA-Z_$\u00C0-\u02AF\u0370-\u03FF\u2100-\u214F][a-z0-9A-Z_$\u00C0-\u02AF\u0370-\u03FF\u2100-\u214F\uD835]*$") !== -1;
 }
 
 function addVariable() {
@@ -146,15 +145,34 @@ function deleteVariable(varId) {
 }
 
 function computeValueAndUncertainty(data) {
-    let val = [];
-    let unc = [];
-    for (let i = 0; i < data.length; i++) {
-        val.push(data[i][0]);
-        unc.push(data[i][1]);
+    let val = null;
+    let unc = null;
+    if (data.length === 1) {
+        val = data[0][0];
+        unc = data[0][1];
+    } else{
+        val = [];
+        unc = [];
+        for (let i = 0; i < data.length; i++) {
+            val.push(data[i][0]);
+            unc.push(data[i][1]);
+        }
+        if (unc.every((item) => item === unc[0])) {
+            unc = math.sqrt((math.std(val)/math.sqrt(val.length))**2 + unc[0]**2);
+            val = math.mean(val);
+        }
+        else {
+            let temp_val = 0;
+            let temp_unc = 0;
+            for (let i = 0; i < val.length; i++) {
+                temp_val += val[i] / unc[i]**2;
+                temp_unc += 1 / unc[i]**2;
+            }
+            val = temp_val / temp_unc;
+            unc = 1 / math.sqrt(temp_unc);
+        }
     }
-    unc = math.sqrt((math.std(val)/math.sqrt(val.length))**2 + math.mean(unc)**2);
-    val = math.mean(val);
-    return [val, unc]
+    return [val, unc];
 }
 
 function computePropagation() {

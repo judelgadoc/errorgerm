@@ -268,8 +268,16 @@ textarea {
     width: 100%
   }
 
-  .row-wrapper {
+.row-wrapper {
     overflow: auto;
     display:inline-block;
     width: 100%
   }
+
+.clickable-row {
+    cursor: pointer;
+}
+
+.table-active {
+    cursor: pointer;
+}

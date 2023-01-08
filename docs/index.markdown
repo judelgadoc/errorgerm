@@ -74,7 +74,7 @@ layout: home
   <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Add new variable</h1>
+        <h2 class="modal-title fs-5" id="exampleModalLabel">Add new variable</h2>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -109,7 +109,7 @@ layout: home
   <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit variable</h1>
+        <h2 class="modal-title fs-5" id="exampleModalLabel">Edit variable</h2>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -144,7 +144,7 @@ layout: home
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Delete variable</h1>
+        <h2 class="modal-title fs-5" id="exampleModalLabel">Delete variable</h2>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
