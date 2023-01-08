@@ -20,7 +20,7 @@ use_math: true
 <h3>Valid names</h3>
 <p class="text-justify">The name of a variable must be valid, a name to be valid must begin with an ''alpha character'' and can be followed by an ''alpha character'' or a number</p>
 
-<p class="text-justify">An ''alpha character'' in ErrorGerm is almost equal to a <a href="https://mathjs.org/docs/expressions/syntax.html#constants-and-variables" target="_blank">Math.js's alpha character</a>, but excluding mathematical alphanumeric symbols (<code>\u{1D400} - \u{1D7FF}</code>)</p>
+<p class="text-justify">An ''alpha character'' in ErrorGerm is almost equal to a <a href="https://mathjs.org/docs/expressions/syntax.html#constants-and-variables" target="_blank">math.js's alpha character</a>, but excluding mathematical alphanumeric symbols (<code>\u{1D400} - \u{1D7FF}</code>)</p>
 
 <p class="text-justify">Examples of valid names are:</p>
 
@@ -123,3 +123,13 @@ where all $x_i$ are measures with known uncertainties $\Delta x_0, \Delta x_1, \
 <figure class="text-center">
 $$\Delta V = \sqrt{\left( \frac{\partial V}{\partial x_0} \right)^2 \Delta x_0^2 + \left( \frac{\partial V}{\partial x_1} \right)^2 \Delta x_1^2 + \left( \frac{\partial V}{\partial x_2} \right)^2 \Delta x_2^2 + \cdots}$$
 </figure>
+
+<h2>References</h2>
+<div class="csl-bib-body">
+  <div data-csl-entry-id="bevington_data_2003" class="csl-entry">
+    <span class="csl-left-margin">[1] </span><span class="csl-right-inline">P. R. Bevington and D. K. Robinson, <i>Data reduction and error analysis for the physical sciences</i>, 3rd ed. Boston: McGraw-Hill, 2003.</span>
+  </div>
+  <div data-csl-entry-id="ardila_vargas_fisica_2007" class="csl-entry">
+    <span class="csl-left-margin">[2] </span><span class="csl-right-inline">Á. M. Ardila Vargas, <i>Física Experimental</i>. Bogotá: Universidad Nacional de Colombia. Facultad de Ciencias, 2007.</span>
+  </div>
+</div>
