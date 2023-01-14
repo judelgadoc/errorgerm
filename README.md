@@ -88,7 +88,7 @@ ErrorGerm is an open source web app with aims to ease the calculation of propaga
 * [![Jekyll][Jekyll]][Jekyll-url]
 * [![Bootstrap][Bootstrap]][Bootstrap-url]
 * [![Mathjs][Mathjs]][Mathjs-url]
-* [![JavaScript][JavaScript]][Mathjs-url]
+* [![JavaScript][JavaScript]][JavaScript-url]
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -131,14 +131,14 @@ Jekyll and Bundle: please refer to [Jekyll Documentation](https://jekyllrb.com/d
 ## Usage
 
 ### Add new variable
-<p> Click on <img src="https://raw.githubusercontent.com/judelgadoc/errorgerm/main/docs/assets/images/add.svg" alt="Logo" width="14" height="14"> then add the desired measures and a valid name
+<p> Click on <img src="https://raw.githubusercontent.com/judelgadoc/errorgerm/main/docs/assets/images/add.svg" alt="add symbol" width="14" height="14"> then add the desired measures and a valid name
 </p> 
 
 ![Add variable][add-variable-screenshot]
 
 ### Edit or remove variable
 
-<p> Select a variable of the table and then click on <img src="https://raw.githubusercontent.com/judelgadoc/errorgerm/main/docs/assets/images/edit.svg" alt="Logo" width="14" height="14"> or  <img src="https://raw.githubusercontent.com/judelgadoc/errorgerm/main/docs/assets/images/delete.svg" alt="Logo" width="14" height="14">
+<p> Select a variable of the table and then click on <img src="https://raw.githubusercontent.com/judelgadoc/errorgerm/main/docs/assets/images/edit.svg" alt="edit symbol" width="14" height="14"> or  <img src="https://raw.githubusercontent.com/judelgadoc/errorgerm/main/docs/assets/images/delete.svg" alt="delete symbol" width="14" height="14">
 </p> 
 
 ### Make a calculation
