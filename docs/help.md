@@ -20,7 +20,7 @@ use_math: true
 <h3>Valid names</h3>
 <p class="text-justify">The name of a variable must be valid, a name to be valid must begin with an ''alpha character'' and can be followed by an ''alpha character'' or a number</p>
 
-<p class="text-justify">An ''alpha character'' in ErrorGerm is almost equal to a <a href="https://mathjs.org/docs/expressions/syntax.html#constants-and-variables" target="_blank">math.js's alpha character</a>, but excluding mathematical alphanumeric symbols (<code>\u{1D400} - \u{1D7FF}</code>)</p>
+<p class="text-justify">An ''alpha character'' in ErrorGerm is almost equal to a <a href="https://mathjs.org/docs/expressions/syntax.html#constants-and-variables" target="_blank" rel="noopener noreferrer">math.js's alpha character</a>, but excluding mathematical alphanumeric symbols (<code>\u{1D400} - \u{1D7FF}</code>)</p>
 
 <p class="text-justify">Examples of valid names are:</p>
 
