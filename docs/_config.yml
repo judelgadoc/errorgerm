@@ -20,7 +20,7 @@
 
 title: ErrorGerm
 description: >- # this means to ignore newlines until "baseurl:"
-  ErrorGerm is a calculator of propagation of uncertainty.
+  ErrorGerm is a propagation of uncertainties calculator. 
   It can export and import a session for later usage.
 tagline: Propagation of Uncertainty Calculator
 domain: judelgadoc.github.io
@@ -41,7 +41,7 @@ bootstrap:
   social_links:
     github:  'https://github.com/judelgadoc/errorgerm'
   header_pages:
-    - about.markdown
+    - about.md
     - help.md
 
 social:

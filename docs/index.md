@@ -77,6 +77,7 @@ layout: home
         <h2 class="modal-title fs-5" id="exampleModalLabel">Add new variable</h2>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+      <form class="needs-validation" id="addForm" onsubmit="validateAndFakeSubmit(event)">
       <div class="modal-body">
         <label for="nameInputAdd">Name</label>
         <input type="text" class="form-control" id="nameInputAdd" placeholder="Name" name="name" required>
@@ -92,15 +93,16 @@ layout: home
             <tbody id="addTable">
               <tr>
                 <td class="text-center"><input type="number" class="form-control" placeholder="0.0" step="1e-15" required></td>
-                <td class="text-center"><input type="number" class="form-control" placeholder="0.0" step="1e-15" required></td>
+                <td class="text-center"><input type="number" class="form-control" placeholder="0.0" step="1e-15" min="1e-35" required></td>
               </tr>
             </tbody>
           </table>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="addVariable()">Save changes</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
       </div>
+      </form>
     </div>
   </div>
 </div>

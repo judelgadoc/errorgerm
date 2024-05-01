@@ -18,8 +18,10 @@ function addRow(tab_id, data = [null, null]) {
         inp.setAttribute("class", "form-control");
         inp.setAttribute("placeholder", "0.0");
         inp.setAttribute("step", "1e-35");
-        inp.setAttribute("value", data[i]);
-        inp.setAttribute("required", "required");
+        inp.setAttribute("value", data[i] === null || data[i] === undefined ? "" : data[i]);
+        inp.setAttribute("required", "required")
+        if (i == 1)
+            inp.setAttribute("min", "1e-35");
         celVal.innerHTML = inp.outerHTML;
     }
 }
@@ -93,9 +95,31 @@ function validateName(name) {
     return !names.includes(name) && name.search("^[a-zA-Z_$\u00C0-\u02AF\u0370-\u03FF\u2100-\u214F][a-z0-9A-Z_$\u00C0-\u02AF\u0370-\u03FF\u2100-\u214F\uD835]*$") !== -1;
 }
 
+function validateAndFakeSubmit(event) {
+    let form = document.getElementById('addForm');
+    let addModal = bootstrap.Modal.getInstance(document.getElementById("addModal")); 
+    let nameInput = document.getElementById("nameInputAdd");
+
+    if (form.checkValidity() && validateName(nameInput.value)) {
+        addVariable();
+        event.preventDefault();
+        addModal.hide();
+        form.reset();
+        deleteAllRows("addTable");
+        addRow("addTable");
+        return false;
+    } else if (!validateName(nameInput.value)) {
+        alert('"' + nameInput.value + '"is not a valid name');
+        event.preventDefault();
+        return false;
+    } else {
+        event.preventDefault();
+        return false;
+    }
+}
+
 function addVariable() {
     let name = document.getElementById("nameInputAdd").value;
-    if (validateName(name)) {
         let tab = document.getElementById("addTable");
         let data = [];
         for (let i = 0; i < tab.rows.length; i++) {
@@ -118,8 +142,6 @@ function addVariable() {
         };
         VARIABLES.push(result);
         loadVariables();
-    } else
-        alert('"' + name + '"is not a valid name');
 }
 
 function editVariable(varId) {
