@@ -7,6 +7,24 @@ function changeSignificantFigures() {
     loadVariables();
 }
 
+function getInfo() {
+    let tab = document.getElementById("addTable");
+    let NopInput = document.getElementById("NopInput");
+    let NInput = document.getElementById("NInput");
+    let vals = [];
+    let uncs = []
+    for (let i = 0; i < tab.rows.length; i++) {
+        let val = Number(tab.rows[i].cells[0].children[0].value);
+        let unc = Number(tab.rows[i].cells[1].children[0].value);
+        vals.push(val);
+        uncs.push(unc);
+    }
+    let mu = math.std(vals) / math.sqrt(vals.length);
+    let Nop = (mu / math.max(uncs))**2;
+    NopInput.setAttribute("value", Nop);
+    NInput.setAttribute("value", vals.length);
+}
+
 function addRow(tab_id, data = [null, null]) {
     let tab = document.getElementById(tab_id);
     let row = tab.insertRow(-1);
@@ -120,28 +138,28 @@ function validateAndFakeSubmit(event) {
 
 function addVariable() {
     let name = document.getElementById("nameInputAdd").value;
-        let tab = document.getElementById("addTable");
-        let data = [];
-        for (let i = 0; i < tab.rows.length; i++) {
-            let val = Number(tab.rows[i].cells[0].children[0].value);
-            let unc = Number(tab.rows[i].cells[1].children[0].value);
-            data.push([val, unc]);
-        }
-        let [value, uncertainty] = computeValueAndUncertainty(data);
-        let _id = VARIABLES.reduce((acc, value) => {
-            return (acc = acc > value._id ? acc : value._id);
-        }, 0) + 1;
-        let note = "";
-        let result = {
-            name,
-            data,
-            value,
-            uncertainty,
-            note,
-            _id
-        };
-        VARIABLES.push(result);
-        loadVariables();
+    let tab = document.getElementById("addTable");
+    let data = [];
+    for (let i = 0; i < tab.rows.length; i++) {
+        let val = Number(tab.rows[i].cells[0].children[0].value);
+        let unc = Number(tab.rows[i].cells[1].children[0].value);
+        data.push([val, unc]);
+    }
+    let [value, uncertainty] = computeValueAndUncertainty(data);
+    let _id = VARIABLES.reduce((acc, value) => {
+        return (acc = acc > value._id ? acc : value._id);
+    }, 0) + 1;
+    let note = "";
+    let result = {
+        name,
+        data,
+        value,
+        uncertainty,
+        note,
+        _id
+    };
+    VARIABLES.push(result);
+    loadVariables();
 }
 
 function editVariable(varId) {

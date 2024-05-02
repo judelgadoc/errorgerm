@@ -83,6 +83,7 @@ layout: home
         <input type="text" class="form-control" id="nameInputAdd" placeholder="Name" name="name" required>
         <img src="{{ '/assets/images/add.svg' | relative_url }}" title="Add row" alt="A" width="20" height="20" onclick="addRow('addTable')" style="cursor: pointer">
         <img src="{{ '/assets/images/minus.svg' | relative_url }}" title="Delete row" alt="D" width="20" height="20" onclick="deleteRow('addTable')" style="cursor: pointer">
+        <img src="{{ '/assets/images/info.svg' | relative_url }}" title="Info" alt="I" width="20" height="20" data-bs-toggle="modal" data-bs-target="#infoModal" onclick="getInfo()" style="cursor: pointer">
           <table class="table table-bordered table-hover">
             <thead>
               <tr>
@@ -103,6 +104,27 @@ layout: home
         <button type="submit" class="btn btn-primary">Save changes</button>
       </div>
       </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title fs-5" id="exampleModalLabel">Info</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <label for="NopInput">\( N_{op} \)</label>
+        <input type="number" class="form-control" id="NopInput" placeholder="0" name="NopInput" readonly>
+        <label for="NInput">\( N \)</label>
+        <input type="number" class="form-control" id="NInput" placeholder="0" name="NInput" readonly>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
     </div>
   </div>
 </div>
